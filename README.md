@@ -1,10 +1,55 @@
 # Create Java Project
 # Add Spring Dependencies to build path
 # Create Shape Interface
-# Create Rectangle class and implement the Shape interface
+```
+package org.skm.spring;
+
+public interface Shape {
+
+	public String getShapeName();
+	
+	public int getArea(int a, int b);
+}
+```
 # Create RectangleAreaCalculatorService
+```
+package org.skm.spring;
+
+public class RectangleAreaCalculatorService {
+
+	public int calculateArea(int a, int b) {
+		return a * b;
+	}
+}
+
+```
+# Create Rectangle class and implement the Shape interface
 # Add RectangleAreaCalculatorService as a variable inside Rectangle class
 # Create constructor inside Rectangle class RectangleAreaCalculatorService as a parameter
+```
+package org.skm.spring;
+
+public class Rectangle implements Shape {
+
+	private RectangleAreaCalculatorService areaCalculatorService;
+
+	public Rectangle(RectangleAreaCalculatorService areaCalculatorService) {
+		this.areaCalculatorService = areaCalculatorService;
+	}
+
+	@Override
+	public String getShapeName() {
+		return "Rectangle";
+	}
+
+	@Override
+	public int getArea(int a, int b) {
+		return areaCalculatorService.calculateArea(a, b);
+	}
+
+}
+
+```
 # Create applicationContext.xml like below
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -22,4 +67,31 @@
     	<constructor-arg ref="rectangleAreaCalculatorService"></constructor-arg>
     </bean>
 </beans>
+```
+# create a class with main method like below
+```
+package org.skm.spring;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class XmlDependencyInjectionApp {
+
+	public static void main(String[] args) {
+
+		try (ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(
+				"applicationContext.xml")) {
+			testRectangle(classPathXmlApplicationContext);
+		} catch (BeansException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void testRectangle(ClassPathXmlApplicationContext classPathXmlApplicationContext) {
+		Shape shape = classPathXmlApplicationContext.getBean("rectangle", Shape.class);
+		System.out.println(shape.getShapeName());
+		System.out.println(shape.getArea(3, 5));
+	}
+
+}
 ```
