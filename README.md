@@ -1,5 +1,7 @@
-# Create Java Project
-# Add Spring Dependencies to build path
+# Create a New Java Project
+# Download Spring Dependencies from
+# Add them to lib folder
+# Add the jars to the build path
 # Create Shape Interface
 ```
 package org.skm.spring;
