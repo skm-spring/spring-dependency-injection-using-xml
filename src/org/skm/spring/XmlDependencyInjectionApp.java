@@ -19,6 +19,8 @@ public class XmlDependencyInjectionApp {
 		Shape shape = classPathXmlApplicationContext.getBean("rectangle", Shape.class);
 		System.out.println(shape.getShapeName());
 		System.out.println(shape.getArea(3, 5));
+		System.out.println("Number of Sides:" + shape.getNumberOfSides());
+		System.out.println("Interior Angle:" + shape.getInteriorAngle());
 	}
 
 }

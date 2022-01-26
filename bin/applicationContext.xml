@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Define your beans here -->
-    <bean id="rectangleAreaCalculatorService" class="org.skm.spring.RectangleAreaCalculatorService"></bean>
-    <bean id="rectangle" class="org.skm.spring.Rectangle">
-    	<constructor-arg ref="rectangleAreaCalculatorService"></constructor-arg>
-    </bean>
+	<!-- property file loader -->
+	<context:property-placeholder
+		location="classpath:shape.properties" />
+
+	<!-- Define your beans here -->
+	<bean id="rectangleAreaCalculatorService"
+		class="org.skm.spring.RectangleAreaCalculatorService"></bean>
+		
+	<bean id="numberOfSides"
+		class="org.skm.spring.RectangleSideService"></bean>
+		
+	<bean id="rectangle" class="org.skm.spring.Rectangle">
+		<!-- Below is used for constructor injection -->
+		<constructor-arg ref="rectangleAreaCalculatorService"></constructor-arg>
+		<!-- Setter Injection is done by using property tag and we should pass 
+			name and ref name property below should match with the property name defined 
+			in the org.skm.spring.Rectangle -->
+		<property name="numberOfSides" ref="numberOfSides"></property>
+		<!-- Injecting Literal Values -->
+		<property name="shapeName" value="Rectangle"></property>
+		<property name="interiorAngle"
+			value="${rectangle.interiorAngle}"></property>
+	</bean>
 </beans>
 
 

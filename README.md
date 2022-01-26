@@ -1,8 +1,8 @@
-# Create a New Java Project
-# Download Spring Dependencies from
-# Add them to lib folder
-# Add the jars to the build path
-# Create Shape Interface
+1) Create a New Java Project
+2) Download Spring Dependencies from
+3) Add them to lib folder
+4) Add the jars to the build path
+5) Create Shape Interface
 ```
 package org.skm.spring;
 
@@ -13,7 +13,7 @@ public interface Shape {
 	public int getArea(int a, int b);
 }
 ```
-# Create RectangleAreaCalculatorService
+6) Create RectangleAreaCalculatorService
 ```
 package org.skm.spring;
 
@@ -25,9 +25,9 @@ public class RectangleAreaCalculatorService {
 }
 
 ```
-# Create Rectangle class and implement the Shape interface
-# Add RectangleAreaCalculatorService as a variable inside Rectangle class
-# Create constructor inside Rectangle class RectangleAreaCalculatorService as a parameter
+7) Create Rectangle class and implement the Shape interface
+8) Add RectangleAreaCalculatorService as a variable inside Rectangle class
+9) Create constructor inside Rectangle class RectangleAreaCalculatorService as a parameter
 ```
 package org.skm.spring;
 
@@ -52,7 +52,7 @@ public class Rectangle implements Shape {
 }
 
 ```
-# Create applicationContext.xml like below
+10) Create applicationContext.xml like below
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -70,7 +70,7 @@ public class Rectangle implements Shape {
     </bean>
 </beans>
 ```
-# create a class with main method like below
+11) create a class with main method like below
 ```
 package org.skm.spring;
 
